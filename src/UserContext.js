@@ -16,7 +16,7 @@ export const UserStorage = ({ children }) => {
       setData(null);
       setError(null);
       setLoading(false);
-      setLoading(false);
+      setLogin(false);
       window.localStorage.removeItem("token");
       navigate("/login");
     },
