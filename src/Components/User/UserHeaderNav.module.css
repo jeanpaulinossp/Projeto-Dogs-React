@@ -97,6 +97,7 @@
   display: block;
   transition: 0.3s;
   transform: initial;
+  z-index: 999;
 }
 
 .navMobile a,
