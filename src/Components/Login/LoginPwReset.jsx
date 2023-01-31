@@ -6,6 +6,7 @@ import useForm from "../../Hooks/useForm";
 import Button from "../Forms/Button/Button";
 import Input from "../Forms/Input/Input";
 import Error from "../Helper/Error";
+import Head from "../Helper/Head";
 
 const LoginPwReset = () => {
   const [login, setLogin] = useState("");
@@ -37,6 +38,7 @@ const LoginPwReset = () => {
 
   return (
     <div>
+      <Head title="Resete sua Senha" />
       <h1 className="title">Resete a sua Senha</h1>
       <form onSubmit={handleSubmit}>
         <Input
