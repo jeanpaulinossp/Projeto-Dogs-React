@@ -104,3 +104,11 @@ a {
 .VictoryContainer {
   height: initial !important;
 }
+
+@media only screen and (max-width: 600px) {
+  .VictoryContainer {
+    user-select: auto !important;
+    pointer-events: auto !important;
+    touch-action: auto !important;
+  }
+}
