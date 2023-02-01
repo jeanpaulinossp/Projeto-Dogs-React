@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { lazy, Suspense, useEffect } from "react";
 import { STATS_GET } from "../../api/config";
 import useFetch from "../../Hooks/useFetch";
 import Error from "../Helper/Error";
 import Head from "../Helper/Head";
 import Loading from "../Helper/Loading";
-import UserStatsGraph from "./UserStatsGraph";
+
+const UserStatsGraph = lazy(() => import("./UserStatsGraph"));
 
 const UserEstatistics = () => {
   const { data, error, loading, request } = useFetch();
@@ -21,10 +22,10 @@ const UserEstatistics = () => {
   if (error) return <Error error={error} />;
   if (data)
     return (
-      <>
+      <Suspense fallback={<Loading />}>
         <Head title="Estatísticas" />
         <UserStatsGraph data={data} />
-      </>
+      </Suspense>
     );
   else return null;
 };
