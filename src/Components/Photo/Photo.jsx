@@ -1,21 +1,22 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { PHOTO_GET } from "../../api/config";
-import useFetch from "../../Hooks/useFetch";
 import Error from "../Helper/Error";
 import Head from "../Helper/Head";
 import Loading from "../Helper/Loading";
 import PhotoContent from "./PhotoContent";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchPhoto } from "../../Store/photo";
 
 const Photo = () => {
   // useParams retorna o ultimo parametro da rota
   const { id } = useParams();
-  const { data, loading, error, request } = useFetch();
+
+  const { loading, error, data } = useSelector((state) => state.photo);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const { url, options } = PHOTO_GET(id);
-    request(url, options);
-  }, [request, id]);
+    dispatch(fetchPhoto(id));
+  }, [dispatch, id]);
 
   if (error) return <Error error={error} />;
   if (loading) return <Loading />;
@@ -23,7 +24,7 @@ const Photo = () => {
     return (
       <section className="container mainContainer">
         <Head title={data.photo.title} />
-        <PhotoContent data={data} single={true} />
+        <PhotoContent single={true} />
       </section>
     );
   else return null;
